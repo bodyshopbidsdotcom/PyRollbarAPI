@@ -67,9 +67,19 @@ class PyRollbarAPI(APIGateway):
           'access_token': self._access_tokens['read']
         }
       },
+      'get_item': {
+        'path': '/item/{id}',
+        'method': 'GET',
+        'params': {
+          'access_token': self._access_tokens['read']
+        }
+      },
     }
     self._common_params = {}
     self._common_headers = {}
+
+  def get_item(self, item_id):
+    return self.call('get_item', id=item_id)[0].get('result')
 
   def get_item_from_counter(self, counter):
     return self.call('item_by_counter', counter=counter)[0].get('result')
