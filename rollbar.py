@@ -1,7 +1,7 @@
 from basegateway import APIGateway
 import os
 
-class PyAccountRollbar(APIGateway):
+class PyAccountRollbarAPI(APIGateway):
   def __init__(self, account_read_token=os.environ.get('ROLLBAR_READ_TOKEN'), account_write_token=os.environ.get('ROLLBAR_WRITE_TOKEN')):
     APIGateway.__init__(self)
     self._host_url = 'https://api.rollbar.com/api/1'
@@ -54,10 +54,10 @@ class PyAccountRollbar(APIGateway):
       pass
     return ret
 
-class PyRollbar(APIGateway):
+class PyRollbarAPI(APIGateway):
   def __init__(self, project_name):
     APIGateway.__init__(self)
-    self._access_tokens = PyAccountRollbar().get_project_access_tokens(project_name)
+    self._access_tokens = PyAccountRollbarAPI().get_project_access_tokens(project_name)
     self._host_url = 'https://api.rollbar.com/api/1'
     self._api = {
       'item_by_counter': {

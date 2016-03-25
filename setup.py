@@ -3,14 +3,14 @@ from distutils.core import setup
 CURRENT_VERSION = '0.1'
 
 setup(
-  name = 'PyRollbar',
+  name = 'PyRollbarAPI',
   version = CURRENT_VERSION,
-  py_modules = ['rollbar'],
+  py_modules = ['rollbarapi'],
   description = 'A class to make api calls to Rollbar',
   author = 'Snapsheet',
   author_email = 'technotifications@snapsheet.me',
-  url = 'https://github.com/bodyshopbidsdotcom/PyRollbar',
-  download_url = 'https://github.com/bodyshopbidsdotcom/PyRollbar/tarball/%s' % CURRENT_VERSION,
+  url = 'https://github.com/bodyshopbidsdotcom/PyRollbarAPI',
+  download_url = 'https://github.com/bodyshopbidsdotcom/PyRollbarAPI/tarball/%s' % CURRENT_VERSION,
   keywords = ['api', 'gateway', 'http', 'REST'],
   install_requires = [
     'basegateway==0.9'
