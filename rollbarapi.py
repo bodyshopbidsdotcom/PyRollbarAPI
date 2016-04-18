@@ -74,6 +74,13 @@ class PyRollbarAPI(APIGateway):
           'access_token': self._access_tokens['read']
         }
       },
+      'patch_item': {
+        'path': '/item/{id}',
+        'method': 'PATCH',
+        'params': {
+          'access_token': self._access_tokens['write']
+        }
+      }
     }
     self._common_params = {}
     self._common_headers = {}
@@ -83,3 +90,13 @@ class PyRollbarAPI(APIGateway):
 
   def get_item_from_counter(self, counter):
     return self.call('item_by_counter', counter=counter)[0].get('result')
+
+  def resolve_item_from_counter(self, counter):
+    item = self.get_item_from_counter(counter)
+    if (item or {}).get('id') is not None:
+      return self.resolve_item(item['id'])
+    else:
+      return False
+
+  def resolve_item(self, item_id):
+    return self.call('patch_item', id=item_id, data={"status": "resolved"})[1] == 200
