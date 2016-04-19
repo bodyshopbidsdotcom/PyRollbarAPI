@@ -91,12 +91,16 @@ class PyRollbarAPI(APIGateway):
   def get_item_from_counter(self, counter):
     return self.call('item_by_counter', counter=counter)[0].get('result')
 
-  def resolve_item_from_counter(self, counter):
+  def resolve_item_from_counter(self, counter, version=None):
     item = self.get_item_from_counter(counter)
     if (item or {}).get('id') is not None:
-      return self.resolve_item(item['id'])
+      return self.resolve_item(item['id'], version)
     else:
       return False
 
-  def resolve_item(self, item_id):
-    return self.call('patch_item', id=item_id, data={"status": "resolved"})[1] == 200
+  def resolve_item(self, item_id, version=None):
+    data = {"status": "resolved"}
+    if version is not None:
+      data.update({"resolved_in_version": version})
+
+    return self.call('patch_item', id=item_id, data=data)[1] == 200
