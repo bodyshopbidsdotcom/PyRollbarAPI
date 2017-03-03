@@ -1,6 +1,6 @@
 from distutils.core import setup
 
-CURRENT_VERSION = '0.5'
+CURRENT_VERSION = '0.6'
 
 setup(
   name = 'PyRollbarAPI',

@@ -55,9 +55,9 @@ class PyAccountRollbarAPI(APIGateway):
     return ret
 
 class PyRollbarAPI(APIGateway):
-  def __init__(self, project_name):
+  def __init__(self, project_name, account_read_token=os.environ.get('ROLLBAR_READ_TOKEN'), account_write_token=os.environ.get('ROLLBAR_WRITE_TOKEN')):
     APIGateway.__init__(self)
-    self._access_tokens = PyAccountRollbarAPI().get_project_access_tokens(project_name)
+    self._access_tokens = PyAccountRollbarAPI(account_read_token=account_read_token, account_write_token=account_write_token).get_project_access_tokens(project_name)
     self._host_url = 'https://api.rollbar.com/api/1'
     self._api = {
       'item_by_counter': {
