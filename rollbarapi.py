@@ -80,6 +80,13 @@ class PyRollbarAPI(APIGateway):
         'params': {
           'access_token': self._access_tokens['write']
         }
+      },
+      'report_deploy': {
+        'path': '/deploy/',
+        'method': 'POST',
+        'params': {
+          'access_token': self._access_tokens['write'],
+        }
       }
     }
     self._common_params = {}
@@ -87,6 +94,10 @@ class PyRollbarAPI(APIGateway):
 
   def get_item(self, item_id):
     return self.call('get_item', id=item_id)[0].get('result')
+
+  def report_deploy(self, environment, revision, local_username):
+    data = { 'environment': environment,  'revision': revision, 'local_username': local_username}
+    return self.call('report_deploy', data=data)[0].get('result')
 
   def get_item_from_counter(self, counter):
     return self.call('item_by_counter', counter=counter)[0].get('result')

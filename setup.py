@@ -1,6 +1,6 @@
 from distutils.core import setup
 
-CURRENT_VERSION = '0.6'
+CURRENT_VERSION = '0.7'
 
 setup(
   name = 'PyRollbarAPI',
@@ -13,7 +13,7 @@ setup(
   download_url = 'https://github.com/bodyshopbidsdotcom/PyRollbarAPI/tarball/%s' % CURRENT_VERSION,
   keywords = ['api', 'gateway', 'http', 'REST'],
   install_requires = [
-    'basegateway==0.10'
+    'basegateway==0.12'
   ],
   classifiers = [
     "Topic :: Internet :: WWW/HTTP",

@@ -1,1 +1,1 @@
-A class to make api calls to Wrike
+A class to make api calls to Rollbar
