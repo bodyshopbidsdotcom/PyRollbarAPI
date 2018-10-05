@@ -95,8 +95,8 @@ class PyRollbarAPI(APIGateway):
   def get_item(self, item_id):
     return self.call('get_item', id=item_id)[0].get('result')
 
-  def report_deploy(self, environment, revision, local_username):
-    data = { 'environment': environment,  'revision': revision, 'local_username': local_username}
+  def report_deploy(self, environment, revision, local_username, status):
+    data = { 'environment': environment,  'revision': revision, 'local_username': local_username, 'status': status}
     return self.call('report_deploy', data=data)[0].get('result')
 
   def get_item_from_counter(self, counter):
